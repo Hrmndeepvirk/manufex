@@ -1,0 +1,173 @@
+@use "../variables" as *;
+.custom-table {
+  .p-datatable-wrapper {
+    border-radius: 8px;
+  }
+
+  .p-datatable .p-datatable-thead {
+    tr > th {
+      font-weight: 400 !important;
+      color: $primaryColorText !important;
+      background: $primaryColor !important;
+      border-bottom: 4px $bgDefault solid !important;
+
+      .p-sortable-column-icon {
+        color: $primaryColorText !important;
+      }
+      .p-column-filter-menu-button {
+        color: $primaryColorText !important;
+
+        &:focus,
+        &:active,
+        &:hover {
+          background: none !important;
+        }
+      }
+      .p-column-filter-menu-button.p-column-filter-menu-button-open {
+        background: none !important;
+      }
+      .p-column-filter-menu-button.p-column-filter-menu-button-active {
+        background: $primaryColorText !important;
+        color: $primaryColor !important;
+      }
+    }
+    tr:first-child > th:first-child {
+      border-radius: 8px 0 0 10px;
+    }
+
+    tr:first-child > th:last-child {
+      border-radius: 0 8px 10px 0;
+    }
+  }
+  .p-datatable .p-datatable-tbody {
+    tr > td {
+      background-color: $highlightBg;
+      color: $textColorPrimary !important;
+    }
+    tr:first-child > td:first-child {
+      border-radius: 8px 0 0 0;
+    }
+
+    tr:first-child > td:last-child {
+      border-radius: 0 8px 0 0;
+    }
+
+    tr:last-child > td:first-child {
+      border-radius: 0 0 0 8px;
+    }
+
+    tr:last-child > td:last-child {
+      border-radius: 0px 0 8px 0;
+    }
+  }
+
+  .p-paginator-bottom.p-paginator.p-component {
+    border: none;
+    .p-paginator .p-paginator-pages .p-paginator-page {
+      height: 2rem;
+      width: 2rem;
+    }
+    .p-paginator-page,
+    .p-paginator-first,
+    .p-paginator-prev,
+    .p-paginator-next,
+    .p-paginator-last.p-paginator-element.p-link {
+      color: $textColorPrimary !important;
+      &.p-highlight,
+      &:hover {
+        background-color: $highlightBg !important;
+        color: $highlightTextColor !important;
+      }
+    }
+  }
+
+  // .p-datatable-table {
+  //   border-collapse: separate !important;
+  //   border-spacing: 0 4px !important;
+  // }
+}
+
+.custom-simple-table-wrapper {
+  overflow-x: auto;
+  border: 1px solid $borderColor;
+  border-radius: 8px;
+
+  input[type="checkbox"] {
+    accent-color: $primaryColor;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+  }
+
+  .custom-simple-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    background-color: $bgDefault;
+    font-family: "Inter", sans-serif;
+
+    thead {
+      background: $highlightBg;
+
+      th {
+        text-align: left;
+        font-weight: 600;
+        color: $highlightTextColor;
+        padding: 12px 10px;
+        border-bottom: 1px solid $borderColor;
+        font-size: 14px;
+        user-select: none;
+
+        &.sortable {
+          cursor: pointer;
+          transition: background 0.2s;
+          &:hover {
+            background: #f1f3f5;
+          }
+        }
+
+        .sort-icon {
+          font-size: 12px;
+          color: $highlightTextColor;
+        }
+      }
+    }
+
+    tbody {
+      tr {
+        transition: background-color 0.2s ease-in-out;
+
+        &:nth-child(even) {
+          background-color: $bgMuted;
+        }
+
+        &:hover {
+          background-color: $highlightBg;
+        }
+
+        td {
+          text-align: left;
+          padding: 10px 12px;
+          font-size: 14px;
+          color: $textColorPrimary;
+          border-bottom: 1px solid #e9ecef;
+
+          &:first-child {
+            font-weight: 500;
+          }
+        }
+
+        .no-data {
+          text-align: center;
+          padding: 15px;
+          color: $borderColor;
+          font-style: italic;
+        }
+      }
+    }
+  }
+}
+
+

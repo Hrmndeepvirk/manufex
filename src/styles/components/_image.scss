@@ -1,0 +1,99 @@
+@use "../variables" as *;
+
+.custom-image-input {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  .image-container {
+    height: 80px;
+    // aspect-ratio: 1 / 1;
+    border-radius: 8px;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid $borderColor;
+
+    .delete-icon {
+      position: absolute;
+      top: 4px;
+      right: 4px;
+      background-color: rgba(0, 0, 0, 0.6);
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      cursor: pointer;
+      font-size: 14px;
+      z-index: 1;
+    }
+  }
+  .upload-button {
+    width: 80px;
+    height: 80px;
+    border: 1px dashed $primaryColor;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    i {
+      font-size: 24px;
+      color: $primaryColor;
+    }
+
+    &:hover {
+      background-color: $bgMuted;
+      border-color: $primaryColor;
+    }
+  }
+  &.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+  }
+}
+.custom-image-cropper-containter {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1200;
+  .crop-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 60px;
+  }
+  .controls {
+    position: absolute;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    background-color: $bgDefault;
+    padding: 0 16px;
+  }
+  .zoom-range {
+    width: 200px;
+  }
+  .p-slider {
+    .p-slider-range {
+      background-color: $primaryColor;
+    }
+
+    .p-slider-handle {
+      background-color: $primaryColor;
+      border: 1px solid $primaryColor;
+    }
+  }
+}

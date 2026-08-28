@@ -1,0 +1,896 @@
+@use "../variables" as *;
+
+// Fallback values (used when no company colors are set via CSS custom properties)
+$vr-primary-fallback: $primaryColor;
+$vr-text-fallback: $primaryColorText;
+
+// ─── Slide transition keyframes ─────────────────────────────────────
+@keyframes vr-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes vr-slide-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+// ─── Sign-in screen (white background) ────────────────────────────
+.visitor-registration-signin {
+  min-height: 100vh;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  position: relative;
+
+  .vr-signin-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  .vr-company-logo {
+    img {
+      max-height: 200px;
+      max-width: 320px;
+      object-fit: contain;
+    }
+  }
+
+  .vr-logo-placeholder {
+    width: 140px;
+    height: 140px;
+    background: #f5f5f5;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    i {
+      font-size: 3.5rem;
+      color: #999;
+    }
+  }
+
+  .vr-btn-signin {
+    background: var(--vr-primary, $vr-primary-fallback);
+    color: var(--vr-text, $vr-text-fallback);
+    border: none;
+    font-family: var(--font-family);
+    font-size: 1.8rem;
+    font-weight: 400;
+    padding: 1rem 4rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    transition: opacity 0.2s;
+    letter-spacing: 0.5px;
+
+    i {
+      font-size: 1.4rem;
+    }
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+
+  .vr-signin-footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    font-size: 0.85rem;
+    color: #999;
+
+    a,
+    button {
+      background: none;
+      border: none;
+      color: #999;
+      font-family: var(--font-family);
+      font-size: 0.85rem;
+      cursor: pointer;
+      text-decoration: none;
+
+      &:hover {
+        color: #666;
+      }
+    }
+
+    .vr-footer-center {
+      color: #bbb;
+    }
+  }
+}
+
+// ─── Activation code screen (white background) ────────────────────
+.visitor-registration-activation {
+  min-height: 100vh;
+  width: 100%;
+  background: #ffffff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-family);
+  position: relative;
+  color: $textColorPrimary;
+
+  .vr-activation-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+    padding: 2rem;
+  }
+
+  .vr-heading {
+    font-size: 1.6rem;
+    font-weight: 400;
+    color: #333;
+    text-align: center;
+    margin: 0;
+  }
+
+  .vr-subtext {
+    font-size: 0.95rem;
+    color: #888;
+    text-align: center;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .vr-activation-input {
+    width: 100%;
+
+    input {
+      width: 100%;
+      border: none;
+      border-bottom: 2px solid #ccc;
+      padding: 0.75rem 0;
+      font-size: 1.2rem;
+      font-family: var(--font-family);
+      outline: none;
+      text-align: center;
+      color: #333;
+      background: transparent;
+
+      &::placeholder {
+        color: #bbb;
+      }
+
+      &:focus {
+        border-bottom-color: var(--vr-primary, $vr-primary-fallback);
+      }
+    }
+  }
+
+  .vr-btn-signin {
+    background: var(--vr-primary, $vr-primary-fallback);
+    color: var(--vr-text, $vr-text-fallback);
+    border: none;
+    font-family: var(--font-family);
+    font-size: 1.3rem;
+    font-weight: 400;
+    padding: 0.85rem 3rem;
+    border-radius: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.2s;
+    margin-top: 1rem;
+
+    &:hover:not(:disabled) {
+      opacity: 0.9;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+// ─── Primary step screens (all form steps) ───────────────────────
+.visitor-registration {
+  min-height: 100vh;
+  width: 100%;
+  background-color: var(--vr-primary, $vr-primary-fallback);
+  color: var(--vr-text, $vr-text-fallback);
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-family);
+  position: relative;
+  overflow: hidden;
+
+  // ─── Top navigation bar ───────────────────────────────────
+  .vr-topbar {
+    width: 100%;
+    height: 70px;
+    background: rgba(0, 0, 0, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .vr-nav-btn {
+    background: none;
+    border: none;
+    color: var(--vr-text, $vr-text-fallback);
+    opacity: 0.8;
+    font-size: 1.8rem;
+    cursor: pointer;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+
+  .vr-nav-placeholder {
+    width: 56px;
+    height: 56px;
+  }
+
+  // ─── Main content area ────────────────────────────────────
+  .vr-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 2rem 2rem;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+
+    &.vr-slide-forward {
+      animation: vr-slide-in-right 0.35s ease-out both;
+    }
+
+    &.vr-slide-backward {
+      animation: vr-slide-in-left 0.35s ease-out both;
+    }
+  }
+
+  // ─── Heading ──────────────────────────────────────────────
+  .vr-heading {
+    font-size: 2.4rem;
+    font-weight: 300;
+    margin: 0 0 2.5rem 0;
+    line-height: 1.3;
+    color: var(--vr-text, $vr-text-fallback);
+  }
+
+  // ─── Underline input styling ──────────────────────────────
+  .vr-field {
+    width: 100%;
+    max-width: 900px;
+    margin-bottom: 1rem;
+
+    .input-layout {
+      width: 100% !important;
+      max-width: 100% !important;
+      flex: 0 0 100% !important;
+      padding: 0;
+    }
+
+    .p-inputtext,
+    .p-inputmask {
+      background: transparent !important;
+      border: none !important;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
+      border-radius: 0 !important;
+      color: var(--vr-text, $vr-text-fallback);
+      font-size: 1.8rem;
+      font-weight: 300;
+      padding: 0.75rem 0;
+      width: 100%;
+      transition: border-color 0.2s;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.4);
+        font-weight: 300;
+      }
+
+      &:focus {
+        box-shadow: none !important;
+        outline: none;
+        border-bottom-color: var(--vr-text, $vr-text-fallback) !important;
+      }
+    }
+
+    // Autocomplete (Address)
+    .p-autocomplete {
+      width: 100%;
+
+      .p-autocomplete-input {
+        background: transparent !important;
+        border: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
+        border-radius: 0 !important;
+        color: var(--vr-text, $vr-text-fallback);
+        font-size: 1.8rem;
+        font-weight: 300;
+        padding: 0.75rem 0;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.4);
+          font-weight: 300;
+        }
+
+        &:focus {
+          box-shadow: none !important;
+          outline: none;
+          border-bottom-color: var(--vr-text, $vr-text-fallback) !important;
+        }
+      }
+    }
+
+    // Calendar override
+    .p-calendar {
+      width: 100%;
+
+      .p-inputtext {
+        background: transparent !important;
+        border: none !important;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.5) !important;
+        border-radius: 0 !important;
+        color: var(--vr-text, $vr-text-fallback);
+        font-size: 1.8rem;
+        font-weight: 300;
+        padding: 0.75rem 0;
+
+        &::placeholder {
+          color: rgba(255, 255, 255, 0.4);
+        }
+
+        &:focus {
+          box-shadow: none !important;
+          border-bottom-color: var(--vr-text, $vr-text-fallback) !important;
+        }
+      }
+
+      .p-datepicker-trigger,
+      .p-calendar-trigger {
+        display: none;
+      }
+    }
+
+    // Error messages
+    .error-msg,
+    .text-red-500 {
+      color: #ffcdd2 !important;
+      font-size: 0.85rem;
+      margin-top: 0.25rem;
+    }
+
+    label {
+      color: var(--vr-text, $vr-text-fallback);
+      opacity: 0.8;
+      font-weight: 300;
+    }
+  }
+
+  // ─── Native input (used for phone, email, names) ──────────
+  .vr-native-input,
+  .vr-field input[type="text"],
+  .vr-field input[type="email"],
+  .vr-field input[type="tel"] {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0;
+    color: var(--vr-text, $vr-text-fallback);
+    font-size: 1.8rem;
+    font-weight: 300;
+    font-family: var(--font-family);
+    padding: 0.75rem 0;
+    width: 100%;
+    outline: none;
+    transition: border-color 0.2s;
+
+    &::placeholder {
+      color: rgba(255, 255, 255, 0.35);
+      font-weight: 300;
+    }
+
+    &:focus {
+      border-bottom-color: var(--vr-text, $vr-text-fallback);
+    }
+  }
+
+  // ─── Helper text below input ──────────────────────────────
+  .vr-helper {
+    font-size: 1rem;
+    color: var(--vr-text, $vr-text-fallback);
+    opacity: 0.6;
+    margin: 0.25rem 0 1rem;
+    font-weight: 300;
+    line-height: 1.4;
+  }
+
+  // ─── Checkbox styling ─────────────────────────────────────
+  .vr-checkbox-field {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+    margin: 1rem 0;
+    cursor: pointer;
+
+    input[type="checkbox"] {
+      width: 22px;
+      height: 22px;
+      min-width: 22px;
+      accent-color: var(--vr-text, $vr-text-fallback);
+      margin-top: 2px;
+      cursor: pointer;
+    }
+
+    .vr-checkbox-label {
+      color: var(--vr-text, $vr-text-fallback);
+      font-size: 1.5rem;
+      font-weight: 300;
+      line-height: 1.4;
+      cursor: pointer;
+    }
+  }
+
+  // ─── Disclaimer text ──────────────────────────────────────
+  .vr-disclaimer {
+    font-size: 0.95rem;
+    color: var(--vr-text, $vr-text-fallback);
+    opacity: 0.6;
+    margin: 1rem 0 0;
+    padding-right: 1rem ;
+    line-height: 1.5;
+    font-weight: 300;
+
+    a {
+      color: var(--vr-text, $vr-text-fallback);
+      opacity: 0.8;
+      text-decoration: underline;
+    }
+  }
+
+  // ─── Visitor type list items ──────────────────────────────
+  .vr-type-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+
+  .vr-type-card {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+    color: var(--vr-text, $vr-text-fallback);
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 1.5rem;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    i {
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+  }
+
+  // ─── Person match card ───────────────────────────────────
+  .vr-match-list {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    margin-bottom: 2rem;
+  }
+
+  .vr-match-card {
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    border-radius: 4px;
+    padding: 1.5rem 1.75rem;
+    color: var(--vr-text, $vr-text-fallback);
+    cursor: pointer;
+    font-family: var(--font-family);
+    font-size: 1.5rem;
+    font-weight: 300;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    .vr-match-name {
+      text-transform: capitalize;
+    }
+
+    i {
+      font-size: 1.1rem;
+      opacity: 0.8;
+    }
+  }
+
+  .vr-not-me-link {
+    background: none;
+    border: none;
+    color: var(--vr-text, $vr-text-fallback);
+    opacity: 0.7;
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-family: var(--font-family);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    i {
+      font-size: 0.9rem;
+    }
+  }
+
+  // ─── Gender radio buttons ─────────────────────────────────
+  .vr-gender-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .vr-gender-option {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    cursor: pointer;
+    background: none;
+    border: none;
+    padding: 0;
+    font-family: var(--font-family);
+
+    .vr-radio-circle {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      border-radius: 50%;
+      border: 2px solid var(--vr-text, $vr-text-fallback);
+      opacity: 0.6;
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+
+    .vr-radio-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background: var(--vr-text, $vr-text-fallback);
+      opacity: 0;
+      transition: opacity 0.2s;
+    }
+
+    &.selected {
+      .vr-radio-circle {
+        opacity: 1;
+      }
+      .vr-radio-dot {
+        opacity: 1;
+      }
+    }
+
+    .vr-gender-label {
+      color: var(--vr-text, $vr-text-fallback);
+      font-size: 1.5rem;
+      font-weight: 300;
+    }
+  }
+
+  // ─── Birthday MM/DD/YYYY inputs ───────────────────────────
+  .vr-birthday-fields {
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-end;
+  }
+
+  .vr-birthday-input {
+    input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      color: var(--vr-text, $vr-text-fallback);
+      font-size: 1.8rem;
+      font-weight: 300;
+      font-family: var(--font-family);
+      padding: 0.75rem 0;
+      width: 80px;
+      outline: none;
+      text-align: left;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.35);
+        font-weight: 300;
+      }
+
+      &:focus {
+        border-bottom-color: var(--vr-text, $vr-text-fallback);
+      }
+    }
+
+    &.vr-birthday-year input {
+      width: 100px;
+    }
+  }
+
+  // ─── Manual address fields ────────────────────────────────
+  .vr-address-row {
+    display: flex;
+    gap: 2rem;
+    width: 100%;
+
+    .vr-address-field {
+      flex: 1;
+    }
+  }
+
+  .vr-address-field {
+    margin-bottom: 1.5rem;
+
+    .vr-address-label {
+      color: var(--vr-text, $vr-text-fallback);
+      opacity: 0.7;
+      font-size: 1.1rem;
+      font-weight: 300;
+      margin-bottom: 0.25rem;
+    }
+
+    input {
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+      color: var(--vr-text, $vr-text-fallback);
+      font-size: 1.4rem;
+      font-weight: 300;
+      font-family: var(--font-family);
+      padding: 0.6rem 0;
+      width: 100%;
+      outline: none;
+
+      &::placeholder {
+        color: rgba(255, 255, 255, 0.35);
+      }
+
+      &:focus {
+        border-bottom-color: var(--vr-text, $vr-text-fallback);
+      }
+    }
+  }
+
+  // ─── "Enter address manually →" link ──────────────────────
+  .vr-manual-link {
+    background: none;
+    border: none;
+    color: var(--vr-text, $vr-text-fallback);
+    opacity: 0.7;
+    font-size: 1.3rem;
+    font-weight: 300;
+    font-family: var(--font-family);
+    cursor: pointer;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2rem;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    i {
+      font-size: 0.9rem;
+    }
+  }
+
+  // ─── Submit button (address step) ─────────────────────────
+  .vr-btn-submit {
+    background: none;
+    border: none;
+    color: var(--vr-text, $vr-text-fallback);
+    font-family: var(--font-family);
+    font-size: 1.4rem;
+    font-weight: 400;
+    cursor: pointer;
+    padding: 0.5rem 0;
+    margin-top: 1rem;
+    transition: opacity 0.2s;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+
+  // ─── Success step ─────────────────────────────────────────
+  .vr-success-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    text-align: center;
+    gap: 1rem;
+
+    .vr-success-icon i {
+      font-size: 5rem;
+      color: var(--vr-text, $vr-text-fallback);
+    }
+
+    .vr-heading {
+      text-align: center;
+    }
+
+    .vr-subtext {
+      font-size: 1rem;
+      color: var(--vr-text, $vr-text-fallback);
+      opacity: 0.7;
+      font-weight: 300;
+    }
+  }
+}
+
+// ─── Responsive: Mobile ─────────────────────────────────────────────
+@media screen and (max-width: 576px) {
+  .visitor-registration-signin {
+    .vr-btn-signin {
+      font-size: 1.4rem;
+      padding: 0.85rem 3rem;
+    }
+
+    .vr-company-logo img {
+      max-height: 100px;
+    }
+  }
+
+  .visitor-registration-activation {
+    .vr-heading {
+      font-size: 1.3rem;
+    }
+
+    .vr-activation-content {
+      padding: 1.5rem;
+    }
+  }
+
+  .visitor-registration {
+    .vr-topbar {
+      height: 56px;
+      padding: 0 0.75rem;
+    }
+
+    .vr-nav-btn {
+      font-size: 1.4rem;
+      width: 48px;
+      height: 48px;
+    }
+
+    .vr-content {
+      padding: 2rem 1.25rem 1.5rem;
+    }
+
+    .vr-heading {
+      font-size: 1.6rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .vr-field {
+      .p-inputtext,
+      .p-inputmask,
+      .p-autocomplete .p-autocomplete-input {
+        font-size: 1.4rem;
+      }
+    }
+
+    .vr-native-input,
+    .vr-field input[type="text"],
+    .vr-field input[type="email"],
+    .vr-field input[type="tel"] {
+      font-size: 1.4rem;
+    }
+
+    .vr-type-card,
+    .vr-match-card {
+      font-size: 1.2rem;
+      padding: 1.1rem 1.25rem;
+    }
+
+    .vr-checkbox-field .vr-checkbox-label {
+      font-size: 1.2rem;
+    }
+
+    .vr-gender-option .vr-gender-label {
+      font-size: 1.2rem;
+    }
+
+    .vr-birthday-fields {
+      gap: 1rem;
+    }
+
+    .vr-birthday-input input {
+      font-size: 1.4rem;
+      width: 65px;
+    }
+
+    .vr-birthday-input.vr-birthday-year input {
+      width: 90px;
+    }
+
+    .vr-address-row {
+      flex-direction: column;
+      gap: 0;
+    }
+  }
+}
+
+// ─── Responsive: Tablet ─────────────────────────────────────────────
+@media screen and (min-width: 577px) and (max-width: 991px) {
+  .visitor-registration {
+    .vr-content {
+      padding: 2.5rem 2rem 2rem;
+    }
+
+    .vr-heading {
+      font-size: 2rem;
+    }
+  }
+}

@@ -1,0 +1,37 @@
+@use "../variables" as *;
+
+.product-card {
+  background: $bgDefault;
+  border: 1px solid $borderColor;
+  padding: 0.5rem;
+  border-radius: 8px;
+
+  .product-image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-color: $bgCard;
+    border: 1px solid $borderColor;
+    box-sizing: border-box;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+
+  .product-content {
+    background: $bgCard;
+    border: 1px solid $borderColor;
+    box-sizing: border-box;
+    border-radius: 8px;
+    margin-top: 0.2rem;
+    padding: 0.25rem;
+    text-align: center;
+
+    .product-name {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .product-price {
+      font-weight: 600;
+    }
+  }
+}

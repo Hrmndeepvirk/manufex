@@ -1,0 +1,19 @@
+stages:
+  - deploy
+
+deploy_job:
+  stage: deploy
+  only:
+    - main
+  script:
+    # SSH setup
+    - mkdir -p ~/.ssh
+    - echo "$SSH_PRIVATE_KEY" | tr -d '\r' > ~/.ssh/id_ed25519
+    - chmod 600 ~/.ssh/id_ed25519
+    - echo -e "Host *\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
+
+    # Pull latest code on server
+    - ssh $SERVER_USER@$SERVER_HOST "
+        cd $FRONTEND_PATH &&
+        git pull
+      "

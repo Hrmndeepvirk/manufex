@@ -1,0 +1,24 @@
+@use "../variables" as *;
+.custom-avatar-container {
+  object-fit: cover;
+  display: block;
+  border: 1px solid $borderColor;
+  &.avatar-circle {
+    border-radius: 50%;
+  }
+  &.avatar-square {
+    border-radius: 10px;
+  }
+}
+.custom-user-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid $borderColor;
+  padding: 10px;
+  border-radius: 8px;
+  .user-profile-info {
+    display: flex;
+    flex-direction: column;
+  }
+}

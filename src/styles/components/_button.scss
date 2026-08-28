@@ -1,0 +1,55 @@
+@use "../variables" as *;
+.p-button-primary {
+  background-color: $primaryColor;
+  border-color: $primaryColor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.p-button-secondary {
+  background-color: $highlightBg;
+  border-color: $highlightBg;
+  color: $highlightTextColor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.p-button-outlined {
+  border-color: $primaryColor;
+  color: $primaryColor;
+  background-color: transparent;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.custom-small-button {
+  font-size: 12px;
+  padding: 8px 15px;
+  border-radius: 5px;
+  height: 30px;
+
+  background-color: $primaryColor;
+  border-color: $primaryColor;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+
+  i {
+    font-size: 12px;
+  }
+
+  &.outlined {
+    border: 1px solid $primaryColor;
+    color: $primaryColor;
+    background-color: transparent;
+  }
+  &.secondary {
+    background-color: $highlightBg;
+    color: $highlightTextColor;
+  }
+}

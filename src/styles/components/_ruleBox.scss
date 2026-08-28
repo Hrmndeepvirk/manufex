@@ -1,0 +1,251 @@
+@use "../variables" as *;
+
+.rule-box {
+  border: 1px solid $borderColor;
+  border-radius: 8px;
+  background-color: $bgDefault;
+  padding: 1rem;
+  transition: box-shadow 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.5rem;
+  }
+
+  &__header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__drag-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $textColorSecondary;
+    font-size: 0.85rem;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+
+  &__title {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: $primaryColor;
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+
+    i {
+      font-size: 0.85rem;
+      color: $textColorSecondary;
+      cursor: pointer;
+      transition: color 0.2s ease;
+
+      &:hover {
+        color: $primaryColor;
+      }
+    }
+
+    .rule-box__delete:hover {
+      color: $dangerColor;
+    }
+  }
+
+  &__summary {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  &__type {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: $textColorPrimary;
+  }
+
+  &__detail {
+    font-size: 0.75rem;
+    color: $textColorSecondary;
+  }
+}
+
+.rule-box-wrapper {
+  transition: box-shadow 0.15s ease;
+
+  &--over {
+    box-shadow: inset 0 -2px 0 0 $primaryColor;
+  }
+}
+
+.rule-connector {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+
+  &__operator {
+    display: flex;
+    border-radius: 50px;
+    overflow: hidden;
+    border: 1.5px solid $borderColor;
+  }
+
+  &__option {
+    padding: 0.25rem 0.85rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    cursor: pointer;
+    user-select: none;
+    transition: all 0.2s ease;
+    color: $textColorSecondary;
+    background-color: $bgDefault;
+
+    &--active {
+      background-color: $primaryColor;
+      color: #ffffff;
+      border-color: $primaryColor;
+    }
+  }
+
+  &__group-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.7rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border: 1.5px solid $borderColor;
+    border-radius: 50px;
+    background-color: $bgDefault;
+    color: $textColorSecondary;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: $primaryColor;
+      color: $primaryColor;
+    }
+  }
+
+  &--inside-group {
+    padding: 0.25rem 0;
+  }
+}
+
+// ── Rule Group ─────────────────────────────────────────────────────────
+
+.rule-group {
+  border: 1.5px solid $borderColor;
+  border-radius: 10px;
+  background-color: $bgMuted;
+  overflow: hidden;
+  cursor: grab;
+  transition: box-shadow 0.15s ease;
+
+  &:active {
+    cursor: grabbing;
+  }
+
+  &--over {
+    box-shadow: inset 0 -2px 0 0 $primaryColor;
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    background-color: $bgDefault;
+    border-bottom: 1px solid $borderColor;
+  }
+
+  &__header-left {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__drag-handle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $textColorSecondary;
+    font-size: 0.85rem;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    &:hover {
+      color: $primaryColor;
+    }
+  }
+
+  &__label {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.65rem;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    border-radius: 4px;
+    text-transform: uppercase;
+
+    &--and {
+      background-color: rgba(40, 167, 69, 0.1);
+      color: $successColor;
+    }
+
+    &--or {
+      background-color: rgba(23, 162, 184, 0.1);
+      color: $infoColor;
+    }
+  }
+
+  &__ungroup {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.25rem 0.65rem;
+    font-size: 0.7rem;
+    font-weight: 600;
+    border: 1px solid $borderColor;
+    border-radius: 4px;
+    background: none;
+    color: $textColorSecondary;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+      border-color: $dangerColor;
+      color: $dangerColor;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    padding: 0.75rem;
+  }
+}

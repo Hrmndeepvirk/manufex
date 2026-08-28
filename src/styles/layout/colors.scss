@@ -1,0 +1,23 @@
+@use "../variables" as *;
+.text-primary {
+  color: $primaryColor !important;
+}
+.text-color-primary {
+  color: $textColorPrimary;
+}
+.text-secondary {
+  color: $textColorSecondary;
+}
+.text-highlight {
+  color: $highlightTextColor !important;
+}
+.hover\:text-highlight:hover {
+  color: $highlightTextColor;
+}
+.bg-primary {
+  background-color: $primaryColor !important;
+  color: $primaryColorText !important;
+}
+.bg-card {
+  background-color: $bgCard !important;
+}

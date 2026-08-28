@@ -1,0 +1,69 @@
+@use "../variables" as *;
+.input-layout {
+  label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 0.875rem;
+    display: block;
+    color: $textColorPrimary;
+  }
+  .required {
+    color: $dangerColor;
+  }
+  .max-length {
+    font-size: 0.75rem;
+    color: $textColorSecondary;
+    margin-left: 0.25rem;
+  }
+
+  /* Base checkbox reset */
+  input[type="checkbox"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 18px;
+    height: 18px;
+    border: 2px solid $primaryColor;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    transition: all 0.2s ease-in-out;
+  }
+
+  /* When checked */
+  input[type="checkbox"]:checked {
+    background-color: $primaryColor;
+    border-color: $primaryColor;
+  }
+
+  /* Checkmark */
+  input[type="checkbox"]:checked::after {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 0px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+
+  /* Hover effect */
+  input[type="checkbox"]:hover {
+    border-color: $primaryColor;
+  }
+
+  // /* Focus ring */
+  // input[type="checkbox"]:focus {
+  //   box-shadow: 0 0 0 2px $primaryColor;
+  // }
+
+  /* Disabled state */
+  input[type="checkbox"]:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}

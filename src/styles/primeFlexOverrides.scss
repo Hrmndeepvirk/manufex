@@ -1,0 +1,129 @@
+/* Remove focus outline globally for PrimeReact components */
+@use "./variables" as *;
+
+.p-component:hover,
+.p-component:focus,
+.p-component:focus-visible,
+.p-focus {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: $primaryColor !important;
+}
+.p-chips-multiple-container {
+  outline: none !important;
+  box-shadow: none !important;
+  width: 100%;
+  &:hover {
+    border-color: $primaryColor !important;
+  }
+}
+
+.custom-dialog {
+  .p-dialog-header {
+    background-color: $primaryColor;
+    color: $primaryColorText;
+    padding: 1rem;
+
+    .p-dialog-header-icon {
+      color: $primaryColorText;
+    }
+    .p-dialog-header-icon:enabled:hover {
+      background: none;
+      border: 1px solid $primaryColorText;
+    }
+  }
+  .p-dialog-content {
+    padding: 1rem;
+  }
+}
+
+.custom-confirm-dialog {
+  padding: 1rem;
+  border-radius: 6px;
+}
+
+.p-password {
+  .p-password-input {
+    width: 100%;
+  }
+  .p-icon-field {
+    width: 100%;
+  }
+}
+
+.custom-color-picker .p-overlaypanel-content {
+  padding: 0 !important;
+}
+
+.p-dropdown-item,
+.p-multiselect-item,
+.p-treenode-content,
+.p-picklist-item {
+  &.p-highlight {
+    color: $highlightTextColor;
+    background: $highlightBg;
+
+    .p-tree-toggler {
+      color: $primaryColor;
+    }
+  }
+}
+
+.p-checkbox {
+  .p-checkbox-box[data-p-highlight="true"] {
+    border-color: $primaryColor;
+    background-color: $primaryColor;
+  }
+}
+
+.p-radiobutton.p-highlight .p-radiobutton-box {
+  border-color: $primaryColor;
+  background: $primaryColor;
+}
+
+.badge {
+  padding: 0.1em 0.4em;
+  border-radius: 0.25em;
+  font-size: 0.75em;
+  font-weight: bold;
+  background-color: $primaryColor;
+  color: $primaryColorText;
+}
+
+.fc-license-message {
+  display: none !important;
+}
+.p-splitter-gutter {
+  width: 8px !important;
+  background-color: transparent !important;
+}
+
+.status-outline-btn {
+  background: transparent;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  padding: 0.6rem 1.4rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.status-outline-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.custom-accordion .p-accordion-header a {
+  border: 0 !important;
+  flex-direction: row-reverse;
+  background-color: $primaryColor !important;
+  color: $primaryColorText !important;
+  .p-accordion-header-text {
+    width: 100%;
+  }
+}
+.p-inputswitch.p-highlight .p-inputswitch-slider {
+  background-color: $primaryColor;
+}

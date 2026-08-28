@@ -1,0 +1,9 @@
+@use "../variables.scss" as *;
+
+.calendar-availaility-day {
+  border-color: $primaryColor;
+}
+
+.day {
+  color: $textColorPrimary;
+}

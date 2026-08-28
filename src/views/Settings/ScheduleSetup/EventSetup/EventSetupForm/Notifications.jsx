@@ -1,0 +1,105 @@
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { useNavigate, useParams } from "react-router-dom";
+import FormPageLayout from "@shared/layout/FormPageLayout";
+import CustomCard from "@shared/cards/CustomCard";
+import CustomDropdown from "@inputs/CustomDropdown";
+import CustomInputDropdown from "@inputs/CustomInputDropdown";
+import CustomTextArea from "@inputs/CustomTextArea";
+import formValidation, { showFormErrors } from "@formValidations";
+import {
+  addOrUpdateEventSetup,
+  getEventSetup,
+} from "@store/settings/scheduleSetup/eventSetupActions";
+import { EventOccurancesTypes } from "@utils/dropdownConstants";
+
+function Notifications() {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { id } = useParams();
+
+  const [loading, setLoading] = useState(false);
+  const [pageLoading, setPageLoading] = useState(false);
+  const [data, setData] = useState({
+    eventNotification: false,
+    message: "",
+    cancelLink: false,
+    timeBeforeEventReminder: { value: 0, type: "MINUTES" },
+  });
+
+  useEffect(() => {
+    if (id) {
+      dispatch(
+        getEventSetup(id, setPageLoading, (res) => {
+          setData({
+            eventNotification: res?.eventNotification,
+            message: res?.message,
+            cancelLink: res?.cancelLink,
+            timeBeforeEventReminder: res?.timeBeforeEventReminder,
+          });
+        })
+      );
+    }
+  }, [id]);
+
+  const handleChange = ({ name, value }) => {
+    let formErrors = formValidation(name, value, data);
+    setData((prev) => ({ ...prev, [name]: value, formErrors }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (showFormErrors(data, setData)) {
+      dispatch(
+        addOrUpdateEventSetup(id, data, setLoading, (success, formErrors) => {
+          if (success) {
+            navigate(-1);
+          } else {
+            setData((prev) => ({ ...prev, formErrors }));
+          }
+        })
+      );
+    }
+  };
+
+  return (
+
+    <FormPageLayout
+      onSubmit={handleSubmit}
+      submitLoading={loading}
+      backText="Event Setup"
+      pageLoading={pageLoading}
+    >
+      <CustomCard title="Event Reminders">
+        <CustomDropdown
+          name="eventNotification"
+          booleanOptions
+          onChange={handleChange}
+          data={data}
+        />
+        <CustomInputDropdown
+          name="timeBeforeEventReminder"
+          options={EventOccurancesTypes}
+          onChange={handleChange}
+          data={data}
+          numericOnly
+          col={3}
+        />
+        <CustomTextArea data={data} onChange={handleChange} name="message" />
+      </CustomCard>
+
+      <CustomCard title="Cancellation">
+        <CustomDropdown
+          name="cancelLink"
+          booleanOptions
+          label="Send Cancellation link with reminder text"
+          onChange={handleChange}
+          data={data}
+        />
+      </CustomCard>
+    </FormPageLayout>
+
+  );
+}
+
+export default React.memo(Notifications);

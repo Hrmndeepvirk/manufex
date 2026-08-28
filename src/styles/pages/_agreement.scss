@@ -1,0 +1,70 @@
+@use "../variables" as *;
+
+.signature-box {
+  border: 1px dashed $borderColor;
+  border-radius: 12px;
+  padding: 12px;
+  background: $bgCard;
+  font-family: $fontFamily;
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  position: relative;
+
+  &:hover {
+    border-color: $primaryColor;
+    background: $bgMuted;
+  }
+
+  &.signature-error {
+    border-color: $dangerColor;
+    background: rgba($dangerColor, 0.05);
+  }
+
+  /* Action button */
+  .signature-action {
+    align-self: flex-end;
+    background: $primaryColor;
+    color: $primaryColorText;
+    border: none;
+    border-radius: 8px;
+    padding: 4px 12px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+
+  /* Content area */
+  .signature-content {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  /* Signed image */
+  .signature-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+  }
+
+  /* Empty state */
+  .signature-placeholder {
+    text-align: center;
+    color: $textColorSecondary;
+    font-size: 12px;
+
+    span {
+      display: block;
+      color: $textColorPrimary;
+      font-weight: 500;
+    }
+  }
+}
+.sigPad {
+  width: 100%;
+  height: 100%;
+}

@@ -1,0 +1,158 @@
+@use "../variables" as *;
+.topbar {
+  height: $topbarHeight;
+  background-color: $topbarColor;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 30px;
+  position: fixed;
+  top: var(--env-bar-height);
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border-bottom: 1px solid $borderColor;
+  box-sizing: border-box;
+}
+
+.bottom-navbar {
+  background-color: $topbarColor;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+  border-top-left-radius: 1rem; /* rounded corners */
+  border-top-right-radius: 1rem;
+  height: $bottomMobileNavBarHeight; /* adjust as needed */
+  border-top: 1px solid $borderColor;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+  padding-bottom: 10px;
+}
+
+.suspense-fallback {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.5rem;
+}
+
+.topbar-icon-badge {
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  min-width: 16px;
+  height: 16px;
+  padding: 0 4px;
+  background-color: var(--color-danger);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 16px;
+  text-align: center;
+  pointer-events: none;
+}
+
+.main-content {
+  height: calc(100vh - #{$topbarHeight} - var(--env-bar-height));
+  overflow-y: auto;
+  margin-top: calc(#{$topbarHeight} + var(--env-bar-height));
+  padding-bottom: 10px;
+  transition:
+    margin-top 0.3s ease,
+    height 0.3s ease;
+}
+
+body.recent-checkin-open {
+  .main-content {
+    margin-top: calc(#{$topbarHeight} + #{$topCheckinBarHeight} + var(--env-bar-height));
+    height: calc(100vh - #{$topbarHeight} - #{$topCheckinBarHeight} - var(--env-bar-height));
+    transition:
+      margin-top 0.3s ease,
+      height 0.3s ease;
+  }
+  @media (max-width: 768px) {
+    .main-content {
+      margin-top: calc(#{$topbarHeight} + #{$topCheckinBarHeight} + 70px + var(--env-bar-height));
+      height: calc(100vh - #{$topbarHeight} - #{$topCheckinBarHeight} - 70px - var(--env-bar-height));
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding-bottom: calc($bottomMobileNavBarHeight + 20px);
+  }
+}
+
+.recent-checkin {
+  .recent-checkin-bar {
+    position: fixed;
+    top: -200px;
+    left: 0;
+    width: 100%;
+    height: $topCheckinBarHeight;
+    background-color: $bgDefault;
+    border-top: 1px solid $borderColor;
+    box-shadow: 0px 2.5px 6.7px rgba(0, 0, 0, 0.1);
+    transition: top 0.3s ease;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 0 15px;
+    padding-top: 6px;
+
+    .bar-content {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      align-items: center;
+    }
+    &.open {
+      top: calc(#{$topbarHeight} + var(--env-bar-height));
+    }
+    &.closed {
+      top: -200px;
+    }
+    @media (max-width: 768px) {
+      &.open {
+        bottom: $bottomMobileNavBarHeight;
+      }
+    }
+  }
+  .floating-button {
+    position: fixed;
+    top: calc(#{$topbarHeight} - 24px + var(--env-bar-height));
+    left: 65%;
+    transform: translateX(-50%);
+    padding: 5px 20px;
+    background-color: $primaryColor;
+    color: #fff;
+    border: none;
+    border-radius: 10px 10px 0 0;
+    cursor: pointer;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    font-size: 12px;
+  }
+  @media (max-width: 768px) {
+    .recent-checkin-bar {
+      height: calc($topCheckinBarHeight + 70px);
+    }
+    .floating-button {
+      // bottom: calc($bottomMobileNavBarHeight);
+      left: 50%;
+    }
+  }
+
+  /* Minimize button inside bar */
+  .minimize-button {
+    background: transparent;
+    border: none;
+    color: $primaryColor;
+    cursor: pointer;
+    font-size: 14px;
+  }
+}

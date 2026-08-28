@@ -1,0 +1,31 @@
+@use "../variables" as *;
+.special-access-box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: calc(100% - 2px);
+  height: 100vh;
+  border: 1px solid $primaryColor;
+  pointer-events: none;
+  box-sizing: border-box;
+  z-index: 10000;
+  margin: 0 1px;
+}
+.special-session-info {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  background: $primaryColor;
+  color: $primaryColorText;
+  padding: 4px 18px;
+  border-radius: 0 0 5px 5px;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+  z-index: 10000;
+
+  i {
+    margin-left: 8px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+}

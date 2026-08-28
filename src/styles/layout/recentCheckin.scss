@@ -1,0 +1,66 @@
+// Base styles for card
+.checkin-card {
+  min-width: 200px;
+  text-align: center;
+  border-radius: 1.5rem; // like border-round-3xl
+  padding: 0.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0;
+
+  // content layout
+  &__content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+
+  // Avatar styling
+  &__avatar {
+    height: 40px;
+    width: 40px;
+  }
+
+  // Details section
+  &__details {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    text-align: left;
+
+    .checkin-card__member {
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-weight: 500;
+      text-transform: capitalize;
+    }
+
+    .checkin-card__reason {
+      margin: 0;
+      font-size: 0.8rem;
+      color: #6b7280; // gray-500
+    }
+
+    .checkin-card__extra {
+      margin: 0;
+      font-size: 0.75rem;
+      color: #2563eb; // blue-600
+    }
+  }
+
+  // Status colors (borders + backgrounds)
+  &--SUCCESS {
+    border: 2px solid #22c55e; // green-500
+    background-color: #ecfdf5; // green-50
+  }
+
+  &--WARNING {
+    border: 2px solid #f59e0b; // yellow-500
+    background-color: #fffbeb; // yellow-50
+  }
+
+  &--DANGER {
+    border: 2px solid #ef4444; // red-500
+    background-color: #fef2f2; // red-50
+  }
+}

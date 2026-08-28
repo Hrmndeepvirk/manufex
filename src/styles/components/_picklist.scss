@@ -1,0 +1,26 @@
+@use "../variables" as *;
+
+.p-picklist .p-picklist-header {
+  font-size: 12px !important;
+}
+.picklistbutton {
+  .p-picklist.p-component {
+    .p-picklist-buttons.p-picklist-source-controls {
+      display: none !important;
+    }
+  }
+}
+.p-button.p-component.p-button-icon-only {
+  background: none !important;
+  border-color: $primaryColor !important;
+  color: $primaryColor !important;
+}
+
+.p-picklist .p-picklist-header {
+  border: none !important;
+  color: $textColorPrimary !important;
+  font-size: 12px !important;
+  font-weight: 600;
+  padding: 8px !important;
+  background: transparent !important;
+}

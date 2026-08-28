@@ -1,0 +1,73 @@
+:root {
+  --env-bar-height: 0px; /* set dynamically by Env component when active */
+
+  /* PrimeReact Core Variables with Custom Colors */
+  --primary-color: #252b42; /* Brand primary color for buttons, tabs, highlights */
+  --primary-color-text: #ffffff; /* Text color for content on primary color backgrounds */
+
+  --text-color-primary: #525252; /* Default text color for PrimeReact components */
+  --text-color-secondary: #777777; /* Secondary text color for subtle UI elements */
+
+  --highlight-bg: #f2f5fe; /* Background color for highlighted items (e.g., active state, selection) */
+  --highlight-text-color: #252b42; /* Text color for highlighted content */
+
+  --font-family:
+    "Manrope", sans-serif; /* Global font family including PrimeReact components */
+
+  /* App Colors */
+  /* Background Colors */
+  --color-bg-default: #ffffff; /* Default background */
+  --color-bg-muted: #f9f9f9; /* Light gray sections */
+  --color-bg-card: #f2f5fe; /* Card background */
+
+  --topbar-color: #f9f9f9; /* Topbar background */
+
+  /* Border / Divider */
+  --color-border: #d1d5db;
+
+  /* State Colors*/
+  --color-success: #28a745;
+  --color-warning: #ffc107;
+  --color-danger: #dc3545;
+  --color-info: #17a2b8;
+}
+
+/* ================================
+   SCSS Variables from CSS :root
+================================ */
+
+/* Brand Colors */
+$primaryColor: var(--primary-color);
+$primaryColorText: var(--primary-color-text);
+
+/* Text Colors */
+$textColorPrimary: var(--text-color-primary);
+$textColorSecondary: var(--text-color-secondary);
+$highlightTextColor: var(--highlight-text-color);
+
+/* Highlight Background */
+$highlightBg: var(--highlight-bg);
+
+/* Font */
+$fontFamily: var(--font-family);
+
+/* App Colors */
+/* Background Colors */
+$bgDefault: var(--color-bg-default);
+$bgMuted: var(--color-bg-muted);
+$bgCard: var(--color-bg-card);
+$bgSidebar: #f9f9f9;
+
+/* Border / Divider */
+$borderColor: var(--color-border);
+
+/* State Colors */
+$successColor: var(--color-success);
+$warningColor: var(--color-warning);
+$dangerColor: var(--color-danger);
+$infoColor: var(--color-info);
+
+$topbarColor: var(--topbar-color);
+$topbarHeight: 70px;
+$topCheckinBarHeight: 120px;
+$bottomMobileNavBarHeight: 65px;

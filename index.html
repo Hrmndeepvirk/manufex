@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/manufex-favicon.svg" type="image/svg+xml" />
+
+    <!-- Updated viewport to disable zoom -->
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+    />
+
+    <meta
+      name="description"
+      content="Manufex is a modern industrial manufacturing website demo for automation, engineering, and production services."
+    />
+    <meta
+      name="keywords"
+      content="manufacturing website, industrial automation, engineering services, production systems, Manufex"
+    />
+    <meta name="author" content="Manufex" />
+    <meta name="robots" content="index, follow" />
+    <meta property="og:title" content="Manufex" />
+    <meta
+      property="og:description"
+      content="Modern industrial manufacturing website demo for automation, engineering, and production systems."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="/" />
+    <meta property="og:image" content="/manufex-favicon.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Manufex"
+    />
+    <meta
+      name="twitter:description"
+      content="Modern industrial manufacturing website demo for automation, engineering, and production systems."
+    />
+    <meta name="twitter:image" content="/manufex-favicon.svg" />
+    <title>Manufex</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Link to global CSS file -->
+    <link rel="stylesheet" href="/disable-zoom.css" />
+    <!-- manveer.vinnisoft@gmail.com Google Account Used for Places API -->
+    <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtc8eeRCGEezJ1hWQYUiIslhMb7HOK9X0&libraries=places"
+      async
+      defer
+    ></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar-scheduler@6.1.19/index.global.min.js"></script>
+  </head>
+
+  <style>
+    #initial-loader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: #101213;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      font-family: 'Manrope', sans-serif;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    #initial-loader-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 24px;
+      max-width: 90%;
+      width: 400px;
+    }
+
+    .loader-logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 2.2rem;
+      font-weight: 800;
+      color: #f6f4ef;
+      margin-bottom: 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .loader-logo-mark {
+      display: inline-grid;
+      width: 46px;
+      height: 46px;
+      place-items: center;
+      background: #ff6a00;
+      color: #ffffff;
+      border-radius: 4px;
+      box-shadow: 0 4px 20px rgba(255, 106, 0, 0.35);
+    }
+
+    .loader-message {
+      font-size: 1rem;
+      font-weight: 500;
+      color: #9ea1a3;
+      margin-bottom: 32px;
+      letter-spacing: 0.02em;
+    }
+
+    .loader-spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid rgba(255, 255, 255, 0.08);
+      border-top: 3px solid #ff6a00;
+      border-right: 3px solid #ff6a00;
+      border-radius: 50%;
+      animation: spin 0.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+    }
+
+    @keyframes spin {
+      0% {
+        transform: rotate(0deg);
+      }
+      100% {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+  <body>
+    <div id="root"></div>
+    <div id="initial-loader">
+      <div id="initial-loader-content">
+        <div class="loader-logo">
+          <div class="loader-logo-mark">
+            <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+              <path d="M5.042 15.165a2.528 2.528 0 0 1-2.52 2.523 2.528 2.528 0 0 1-2.522-2.523 2.528 2.528 0 0 1 2.522-2.52h2.52v2.52zm1.261 0a2.528 2.528 0 0 1 2.52-2.52h5.043a2.528 2.528 0 0 1 2.522 2.52v5.042a2.528 2.528 0 0 1-2.522 2.52H8.824a2.528 2.528 0 0 1-2.52-2.52v-5.042zM8.824 5.043a2.528 2.528 0 0 1-2.52-2.522A2.528 2.528 0 0 1 8.824 0a2.528 2.528 0 0 1 2.52 2.522v2.52h-2.52zm0 1.261a2.528 2.528 0 0 1 2.52 2.52v5.043a2.528 2.528 0 0 1-2.52 2.522H3.782a2.528 2.528 0 0 1-2.52-2.522V8.824a2.528 2.528 0 0 1 2.52-2.52h5.042zm10.134 3.782a2.528 2.528 0 0 1 2.522-2.52 2.528 2.528 0 0 1 2.52 2.52 2.528 2.528 0 0 1-2.52 2.52h-2.522v-2.522zm-1.262 0a2.528 2.528 0 0 1-2.52 2.522H10.13a2.528 2.528 0 0 1-2.52-2.522V3.782a2.528 2.528 0 0 1 2.52-2.52h5.043a2.528 2.528 0 0 1 2.522 2.52v5.042zm-3.782 10.134a2.528 2.528 0 0 1 2.52-2.52v-2.522h2.522a2.528 2.528 0 0 1 2.52 2.522 2.528 2.528 0 0 1-2.52 2.52h-2.522v-2.52zm0-1.262a2.528 2.528 0 0 1-2.52-2.52v-5.043a2.528 2.528 0 0 1 2.52-2.522h5.043a2.528 2.528 0 0 1 2.522 2.522v5.043a2.528 2.528 0 0 1-2.522 2.52H15.18z"/>
+            </svg>
+          </div>
+          <span class="loader-logo-text">MANUFEX</span>
+        </div>
+        <div class="loader-message">Your website is loading…</div>
+        <div class="loader-spinner"></div>
+      </div>
+    </div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

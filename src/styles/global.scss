@@ -1,0 +1,70 @@
+@use "./variables" as *;
+
+@use "./layout/layout.scss";
+@use "./layout/recentCheckin.scss";
+@use "./layout/colors.scss";
+@use "./layout/grid.scss";
+@use "./layout/input.scss";
+@use "./layout/specialAccessWindow.scss";
+
+@use "./components/tabview.scss";
+@use "./components/table.scss";
+@use "./components/picklist.scss";
+@use "./components/image.scss";
+@use "./components/calendar.scss";
+@use "./components/usercards.scss";
+@use "./components/sidebar.scss";
+@use "./components/button.scss";
+@use "./components/otp";
+@use "./components/employee_availability";
+@use "./components/paymentCard";
+@use "./components/layoutPlan";
+@use "./components/optionSelect";
+@use "./components/ruleBox";
+@use "./components/reportColumns";
+@use "./components/scrollbar";
+@use "./components/pushNotification";
+
+@use "./pages/auth.scss";
+@use "./pages/authLayout";
+@use "./pages/pos.scss";
+@use "./pages/eventCalendar.scss";
+@use "./pages/agreement.scss";
+@use "./pages/visitorRegisteration.scss";
+@use "./pages/scheduleEvents.scss";
+@use "./pages/manufacturingWebsite.scss";
+
+@use "./primeFlexOverrides.scss";
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap");
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: $bgDefault;
+  color: $textColorPrimary;
+}
+.app {
+  width: 100%;
+  font-family: $fontFamily;
+}
+.truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+}
+
+// html {
+//   zoom: 100%;
+// }
+// @media screen and (max-width: 1440px) {
+//   html {
+//     zoom: 90%;
+//   }
+//   .app {
+//     height: 125vh;
+//     width: 100%;
+//     background-color: $bgDefault;
+//   }
+// }

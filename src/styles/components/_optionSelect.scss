@@ -1,0 +1,23 @@
+@use "../variables" as *;
+
+.option-select-chip {
+  border-radius: 50px;
+  border: 1.5px solid $borderColor;
+  background-color: #ffffff;
+  color: $textColorSecondary;
+  user-select: none;
+  transition: all 0.2s ease;
+  line-height: 1.4;
+  cursor: pointer;
+
+  &--selected {
+    border-color: $primaryColor;
+    background-color: $primaryColor;
+    color: #ffffff;
+  }
+
+  &--disabled {
+    opacity: 0.5;
+    cursor: default;
+  }
+}

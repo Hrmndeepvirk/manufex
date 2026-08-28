@@ -1,0 +1,43 @@
+.c-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: auto;
+  align-items: start;
+
+  gap: 1rem; // Adjust the gap between grid items as needed
+
+  // Default (mobile-first)
+  @for $i from 1 through 12 {
+    .c-col-#{$i} {
+      grid-column: span $i;
+    }
+  }
+
+  // Medium devices (≥768px)
+  @media (min-width: 768px) {
+    @for $i from 1 through 12 {
+      .md\:c-col-#{$i} {
+        grid-column: span $i;
+      }
+    }
+  }
+
+  // Large devices (≥1024px)
+  @media (min-width: 1024px) {
+    @for $i from 1 through 12 {
+      .lg\:c-col-#{$i} {
+        grid-column: span $i;
+      }
+    }
+  }
+
+  // Extra large devices (≥1280px)
+  @media (min-width: 1280px) {
+    @for $i from 1 through 12 {
+      .xl\:c-col-#{$i} {
+        grid-column: span $i;
+      }
+    }
+  }
+}

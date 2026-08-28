@@ -1,0 +1,30 @@
+/* disable-zoom.css */
+
+/* Prevent double-tap zoom and pinch-zoom */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  touch-action: manipulation; /* disables double-tap zoom on most browsers */
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  overflow-x: hidden;
+}
+
+/* Prevent iOS Safari zooming into inputs with small font-size */
+input,
+textarea,
+select,
+button {
+  font-size: 16px; /* iOS Safari won’t zoom inputs ≥16px */
+}
+
+/* Optional: improve the tap feel for buttons/links */
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
