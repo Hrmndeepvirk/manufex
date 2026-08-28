@@ -81,7 +81,7 @@ function AppContent() {
 
 function App() {
   return (
-    <Router>
+    <Router basename="/manufex">
       <AppContent />
     </Router>
   );

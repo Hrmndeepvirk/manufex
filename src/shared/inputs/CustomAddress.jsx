@@ -27,14 +27,47 @@ function CustomAddress({
   }, [data, name]);
 
   useEffect(() => {
-    if (!autocompleteService.current && window.google) {
-      autocompleteService.current =
-        new window.google.maps.places.AutocompleteService();
+    if (window.google) {
+      if (!autocompleteService.current) {
+        autocompleteService.current =
+          new window.google.maps.places.AutocompleteService();
 
-      placesService.current = new window.google.maps.places.PlacesService(
-        document.createElement("div"),
-      );
+        placesService.current = new window.google.maps.places.PlacesService(
+          document.createElement("div"),
+        );
+      }
+      return;
     }
+
+    const apiKey = import.meta.env.VITE_GOOGLE_MAPS_API_KEY;
+    if (!apiKey) return;
+
+    const scriptId = "google-maps-script";
+    let script = document.getElementById(scriptId);
+    if (!script) {
+      script = document.createElement("script");
+      script.id = scriptId;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`;
+      script.async = true;
+      script.defer = true;
+      document.body.appendChild(script);
+    }
+
+    const handleScriptLoad = () => {
+      if (window.google && !autocompleteService.current) {
+        autocompleteService.current =
+          new window.google.maps.places.AutocompleteService();
+
+        placesService.current = new window.google.maps.places.PlacesService(
+          document.createElement("div"),
+        );
+      }
+    };
+
+    script.addEventListener("load", handleScriptLoad);
+    return () => {
+      script.removeEventListener("load", handleScriptLoad);
+    };
   }, []);
 
   const searchAddress = (event) => {

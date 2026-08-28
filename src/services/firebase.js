@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import { getMessaging, getToken, onMessage } from "firebase/messaging";
+import { getMessaging, getToken, onMessage as onMessageFirebase } from "firebase/messaging";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -10,11 +10,18 @@ const firebaseConfig = {
   appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
-const app = initializeApp(firebaseConfig);
-export const messaging = getMessaging(app);
-export { onMessage };
+const hasFirebaseConfig = !!import.meta.env.VITE_FIREBASE_PROJECT_ID;
+
+const app = hasFirebaseConfig ? initializeApp(firebaseConfig) : null;
+export const messaging = app ? getMessaging(app) : null;
+
+export const onMessage = (messagingInstance, callback) => {
+  if (!messagingInstance) return () => {};
+  return onMessageFirebase(messagingInstance, callback);
+};
 
 export const generateToken = async () => {
+  if (!messaging) return;
   try {
     const permission = await Notification.requestPermission();
     if (permission === "granted") {
