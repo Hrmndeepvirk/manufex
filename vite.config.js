@@ -5,6 +5,8 @@ import svgr from "vite-plugin-svgr";
 import { VitePWA } from "vite-plugin-pwa";
 import path from "path";
 export default defineConfig({
+  base: "/manufex/",
+
   build: {
     outDir: "build", // default is "dist"
   },
@@ -33,7 +35,7 @@ export default defineConfig({
         background_color: "#f2f5fe",
         display: "standalone",
         orientation: "portrait",
-        start_url: "/",
+        start_url: "/manufex/",
         icons: [
           {
             src: "/android-chrome-192x192.png",
