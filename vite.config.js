@@ -27,28 +27,28 @@ export default defineConfig({
         enabled: true,
       },
       manifestFilename: "manifest.webmanifest",
-      manifest: {
-        name: "MANUFEX",
-        short_name: "MANUFEX",
-        description: "Industrial Manufacturing Website",
-        theme_color: "#252b42",
-        background_color: "#f2f5fe",
-        display: "standalone",
-        orientation: "portrait",
-        start_url: "/manufex/",
-        icons: [
-          {
-            src: "/android-chrome-192x192.png",
-            sizes: "192x192",
-            type: "image/png",
-          },
-          {
-            src: "/android-chrome-512x512.png",
-            sizes: "512x512",
-            type: "image/png",
-          },
-        ],
-      },
+   manifest: {
+     name: "MANUFEX",
+     short_name: "MANUFEX",
+     description: "Industrial Manufacturing Website",
+     theme_color: "#252b42",
+     background_color: "#f2f5fe",
+     display: "standalone",
+     orientation: "portrait",
+     start_url: "/manufex/",
+     icons: [
+       {
+         src: "android-chrome-192x192.png",
+         sizes: "192x192",
+         type: "image/png",
+       },
+       {
+         src: "android-chrome-512x512.png",
+         sizes: "512x512",
+         type: "image/png",
+       },
+     ],
+   },
     }),
   ],
   server: {
