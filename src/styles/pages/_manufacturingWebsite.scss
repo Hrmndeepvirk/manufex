@@ -160,12 +160,12 @@
 
 .manufacturing-btn--light {
   background: #f3f0eb;
-  color: var(--mfg-orange);
+  color: var(--mfg-charcoal) !important;
 
   &:hover,
   &:focus-visible {
-    background: #fff;
-    color: var(--mfg-orange);
+    background: var(--mfg-orange);
+    color: #fff !important;
   }
 }
 
